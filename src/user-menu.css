@@ -1,0 +1,226 @@
+/* Layout generale */
+.user-menu-header {
+  background: #4a7c7e;
+  color: white;
+  padding: 1.5rem 0;
+  text-align: center;
+}
+.user-menu-header h1 {
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.user-menu-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Categorie */
+.user-menu-categories-wrapper {
+  background: white;
+  padding: 2rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.user-menu-categories {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.user-menu-category-btn {
+  padding: 0.75rem 2rem;
+  background: #f5f5f5;
+  border: none;
+  border-radius: 25px;
+  color: #2c3e50;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.user-menu-category-btn:hover {
+  background: #e0e0e0;
+}
+.user-menu-category-btn.active {
+  background: #4a7c7e;
+  color: white;
+}
+
+/* Griglia carte */
+.user-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 3rem 0;
+}
+
+/* Carte */
+.user-menu-card {
+  /* bordo superiore colorato */
+  border-top: 4px solid var(--card-accent, #4a7c7e);
+  background: var(--card-bg, white);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  height: 400px;
+}
+.user-menu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Flip interno */
+.user-menu-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+.user-menu-card.flipped .user-menu-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Front & Back */
+.user-menu-card-front,
+.user-menu-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.user-menu-card-back {
+  transform: rotateY(180deg);
+  padding: 2rem;
+  background: white;
+}
+
+/* ① WRAPPER CENTRATORE per l’immagine */
+.user-menu-image-wrapper {
+  height: 180px;            /* fissa esattamente l’altezza */
+  display: flex;
+  align-items: center;      /* centri verticalmente */
+  justify-content: center;  /* centri orizzontalmente */
+  overflow: hidden;         /* taglia eventuali eccedenze */
+}
+
+/* ② Immagine dentro il wrapper */
+.user-menu-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* mantiene proporzioni e riempie il box */
+}
+
+/* Contenuto sotto l’immagine */
+.user-menu-card-content {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.user-menu-card-header {
+  margin-bottom: 1rem;
+}
+.user-menu-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.user-menu-card-price {
+  color: #f8961e;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* Eco metrics */
+.user-menu-eco-metrics {
+  margin-top: auto;
+}
+.user-menu-eco-metric {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.user-menu-eco-icon {
+  font-size: 1.25rem;
+}
+.user-menu-eco-bar {
+  flex: 1;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.user-menu-eco-fill {
+  height: 100%;
+  background: #7abfb5;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+.user-menu-eco-value {
+  font-size: 0.9rem;
+  color: #666;
+  min-width: 50px;
+  text-align: right;
+}
+
+/* Ingredienti & descrizione */
+.user-menu-ingredients-section {
+  margin: 1.5rem 0;
+}
+.user-menu-ingredients-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #4a7c7e;
+}
+.user-menu-ingredients-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.user-menu-ingredient-tag {
+  background: #ffeaa7;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.9rem;
+}
+.user-menu-description {
+  margin: 1rem 0;
+  color: #666;
+  flex-grow: 1;
+}
+
+/* Footer back */
+.user-menu-back-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .user-menu-categories {
+    gap: 1rem;
+  }
+  .user-menu-category-btn {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  .user-menu-grid {
+    grid-template-columns: 1fr;
+    padding: 2rem 0;
+  }
+}
