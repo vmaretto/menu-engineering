@@ -34,8 +34,12 @@ function generateDynamicSVG(name) {
     `;
   } else {
     inner = `
-      <path d="M50 150 Q200 ${50 + (seed % 50)} 350 150" stroke="${col1}" stroke-width="8" fill="none"/>
-      <circle cx="${100 + (seed % 200)}" cy="${80 + (seed % 40)}" r="30" fill="${col2}" opacity="0.7"/>
+      <path d="M50 150 Q200 ${
+        50 + (seed % 50)
+      } 350 150" stroke="${col1}" stroke-width="8" fill="none"/>
+      <circle cx="${100 + (seed % 200)}" cy="${
+      80 + (seed % 40)
+    }" r="30" fill="${col2}" opacity="0.7"/>
     `;
   }
 
@@ -86,10 +90,31 @@ const UserMenu = () => {
   const [mainCategory, setMainCategory] = useState("Cocktail");
   const [subFilter, setSubFilter] = useState("Tutti");
   const [flipped, setFlipped] = useState({});
+  const [remoteItems, setRemoteItems] = useState([]);
 
-  const mappedItems = (menuItems || []).map(mapForUserMenu);
+  // ⬇️ Inserisci qui sotto
+  useEffect(() => {
+    fetch("https://troubled-neighborly-petalite.glitch.me/api/menu-json")
+      .then((res) => {
+        if (!res.ok) throw new Error("Errore nella risposta dal server");
+        return res.json();
+      })
+      .then((data) => {
+        console.log("✅ Dati ricevuti da Glitch:", data);
+        setRemoteItems(data);
+      })
+      .catch((err) => {
+        console.error("❌ Errore nel fetch da Glitch:", err);
+      });
+  }, []);
 
-  const mainCategories = Array.from(new Set(mappedItems.map((item) => item.group)));
+  const mappedItems = (
+    remoteItems.length > 0 ? remoteItems : menuItems || []
+  ).map(mapForUserMenu);
+
+  const mainCategories = Array.from(
+    new Set(mappedItems.map((item) => item.group))
+  );
   const subFilters = [
     "Tutti",
     ...Array.from(
@@ -148,7 +173,6 @@ const UserMenu = () => {
               </button>
             ))}
           </div>
-          
         </div>
       </div>
       <div className="user-menu-container">

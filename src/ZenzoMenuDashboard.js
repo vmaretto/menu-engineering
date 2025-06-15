@@ -786,13 +786,35 @@ const ZenzoMenuDashboard = () => {
             <button
               type="button"
               onClick={() => {
-                // 🔸 1. Salva su localStorage
-                localStorage.setItem("menuItems", JSON.stringify(menuItems));
+                const jsonData = JSON.stringify(menuItems, null, 2);
 
-                // 🔸 2. Esporta come file JSON
-                const blob = new Blob([JSON.stringify(menuItems, null, 2)], {
-                  type: "application/json",
-                });
+                // 1️⃣ Salva su localStorage
+                localStorage.setItem("menuItems", jsonData);
+
+                // 2️⃣ Salva su Glitch
+                fetch(
+                  "https://troubled-neighborly-petalite.glitch.me/api/save-json",
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: jsonData,
+                  }
+                )
+                  .then((res) => res.json())
+                  .then((data) => {
+                    console.log("✅ JSON salvato su Glitch:", data);
+                  })
+                  .catch((err) => {
+                    console.error(
+                      "❌ Errore durante il salvataggio su Glitch:",
+                      err
+                    );
+                  });
+
+                // 3️⃣ Scarica localmente
+                const blob = new Blob([jsonData], { type: "application/json" });
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement("a");
                 a.href = url;
