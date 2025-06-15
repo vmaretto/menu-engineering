@@ -1,16 +1,26 @@
 import React, { useState, useEffect, createContext } from "react";
 
-// Crea il contesto da usare in tutta l'app
 export const MenuContext = createContext();
 
 export default function Layout({ children }) {
-  // 1️⃣ Recupera i dati salvati su localStorage (se ci sono)
-  const [menuItems, setMenuItems] = useState(() => {
-    const stored = localStorage.getItem("menuItems");
-    return stored ? JSON.parse(stored) : [];
-  });
+  const [menuItems, setMenuItems] = useState([]);
 
-  // 2️⃣ Ogni volta che menuItems cambia, salvalo su localStorage
+  useEffect(() => {
+    const fetchMenuFromBackend = async () => {
+      try {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/menu`);
+        const json = await res.json();
+        if (Array.isArray(json)) {
+          setMenuItems(json);
+        }
+      } catch (err) {
+        console.error("Errore nel fetch del menu da Glitch:", err);
+      }
+    };
+
+    fetchMenuFromBackend();
+  }, []);
+
   useEffect(() => {
     localStorage.setItem("menuItems", JSON.stringify(menuItems));
   }, [menuItems]);
