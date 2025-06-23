@@ -3,6 +3,19 @@ import "./user-menu.css";
 import { MenuContext } from "./Layout";
 import Papa from "papaparse";
 
+function renderStars(rating) {
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating - fullStars >= 0.5;
+  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+  const stars = [];
+  for (let i = 0; i < fullStars; i++) stars.push("★");
+  if (hasHalfStar) stars.push("☆"); // oppure ⯨ per una mezza stella stilizzata
+  for (let i = 0; i < emptyStars; i++) stars.push("☆");
+
+  return stars.join("");
+}
+
 function stringToSeed(str) {
   return str.split("").reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 0);
 }
@@ -78,6 +91,7 @@ function mapForUserMenu(item) {
         : item["Prezzo di vendita"]
         ? `€${parseFloat(item["Prezzo di vendita"]).toFixed(2)}`
         : "-",
+    rating: parseFloat(item["Popolarità prevista"]) || 0,
     waterFootprint: Number(item["Impronta idrica"]) || 0,
     carbonFootprint: Number(item["Impronta carbonica"]) || 0,
     maxWater: 500,
@@ -141,37 +155,89 @@ const UserMenu = () => {
       className="user-menu-page"
       style={{
         backgroundImage: `
-          linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)),
-          url(${process.env.PUBLIC_URL}/CS01.png)
-        `,
+  linear-gradient(rgba(255,255,255,0.55), rgba(255,255,255,0.55)),
+  url(${process.env.PUBLIC_URL}/Pattern.jpg)
+`,
         backgroundRepeat: "repeat",
+        backgroundSize: "300px",
         backgroundPosition: "center",
-        backgroundSize: "auto",
+        minHeight: "100vh",
       }}
     >
-      <header className="user-menu-header">
-        <h1>Carita Morena × Zenzo Bar</h1>
-      </header>
-      <div className="user-menu-categories-wrapper">
-        <div className="user-menu-container">
-          <div className="user-menu-categories">
-            {mainCategories.map((cat) => (
-              <button
-                key={cat}
-                className={
-                  "user-menu-category-btn" +
-                  (mainCategory === cat ? " active" : "")
-                }
-                onClick={() => {
-                  setMainCategory(cat);
-                  setSubFilter("Tutti");
-                  setFlipped({});
-                }}
-                type="button"
-              >
-                {cat}
-              </button>
-            ))}
+      <div className="user-menu-top-wrapper">
+        <div className="user-menu-logo-column">
+          <img
+            src="/ChatGPT Image 22 giu 2025, 16_23_54.png"
+            alt="Carita Morena x Zenzo Bar"
+            className="user-menu-logo-fullheight"
+          />
+        </div>
+
+        <div className="user-menu-header-content">
+          <header className="user-menu-header-redesign">
+            <div className="user-menu-header-text">
+              <h1 className="user-menu-header-title">
+                Scopri i nostri drink naturali
+              </h1>
+              <p className="user-menu-header-subtitle">
+                Freschi, mediterranei e senza zuccheri aggiunti
+              </p>
+              <p className="user-menu-header-explore">Esplora le categorie</p>
+            </div>
+          </header>
+
+          <div className="user-menu-categories-wrapper">
+            <div className="user-menu-container">
+              <div className="user-menu-categories-icons">
+                {mainCategories.map((cat) => {
+                  const getIconForCategory = (category) => {
+                    switch (category.toLowerCase()) {
+                      case "bevande":
+                        return "🥤"; // bevanda generica
+                      case "cocktail":
+                        return "🍹";
+                      case "crepe":
+                        return "🧇"; // simile a una crepe dolce
+                      case "croissant":
+                        return "🥐";
+                      case "dolce":
+                        return "🍰";
+                      case "frutta":
+                        return "🍓";
+                      case "panino":
+                        return "🥪";
+                      case "piatto":
+                        return "🍽️"; // generico, piatto completo
+                      case "tagliere":
+                        return "🧀"; // rappresenta formaggi/salumi
+                      default:
+                        return "🌿"; // fallback naturale
+                    }
+                  };
+
+                  return (
+                    <button
+                      key={cat}
+                      className={
+                        "user-menu-category-box" +
+                        (mainCategory === cat ? " active" : "")
+                      }
+                      onClick={() => {
+                        setMainCategory(cat);
+                        setSubFilter("Tutti");
+                        setFlipped({});
+                      }}
+                      type="button"
+                    >
+                      <div className="category-icon">
+                        {getIconForCategory(cat)}
+                      </div>
+                      <div className="category-name">{cat}</div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -200,7 +266,12 @@ const UserMenu = () => {
                     </div>
                     <div className="user-menu-card-content">
                       <div className="user-menu-card-header">
-                        <h3 className="user-menu-card-title">{item.name}</h3>
+                        <div className="user-menu-title-stars-row">
+                          <h3 className="user-menu-card-title">{item.name}</h3>
+                          <span className="user-menu-stars">
+                            {renderStars(item.rating)}
+                          </span>
+                        </div>
                         <p className="user-menu-card-price">{item.price}</p>
                       </div>
                       <div className="user-menu-eco-metrics">
