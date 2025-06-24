@@ -358,7 +358,6 @@
 
 /* ========== MOBILE RESPONSIVE ========== */
 @media (max-width: 768px) {
-  
   /* Header mobile: layout verticale */
   .user-menu-top-wrapper {
     flex-direction: column !important;
@@ -368,17 +367,17 @@
     width: 100% !important;
     overflow-x: hidden !important;
   }
-  
+
   /* Logo più piccolo su mobile */
   .user-menu-logo-column {
     flex: none !important;
     width: 150px !important;
   }
-  
+
   .user-menu-logo-fullheight {
     max-height: 120px !important;
   }
-  
+
   /* Contenuto header centrato */
   .user-menu-header-content {
     width: 100% !important;
@@ -386,20 +385,20 @@
     text-align: center !important;
     overflow-x: hidden !important;
   }
-  
+
   .user-menu-header-redesign {
     width: 100% !important;
     align-items: center !important;
     text-align: center !important;
   }
-  
+
   .user-menu-header-text {
     width: 100% !important;
     align-items: center !important;
     text-align: center !important;
     padding: 0 1rem !important;
   }
-  
+
   /* Testi header ridimensionati */
   .user-menu-header-title {
     font-size: 1.5rem !important;
@@ -407,19 +406,19 @@
     margin: 0 !important;
     text-align: center !important;
   }
-  
+
   .user-menu-header-subtitle {
     font-size: 0.95rem !important;
     margin: 0.5rem 0 !important;
     text-align: center !important;
   }
-  
+
   .user-menu-header-explore {
     font-size: 1.3rem !important;
     margin: 0.5rem 0 0 0 !important;
     text-align: center !important;
   }
-  
+
   /* Categorie ottimizzate per mobile - FIX DEFINITIVO */
   .user-menu-categories-wrapper {
     padding: 1rem 0 !important;
@@ -429,7 +428,7 @@
     overflow-y: hidden !important;
     -webkit-overflow-scrolling: touch !important;
   }
-  
+
   /* Il container interno deve essere rimosso dal flow normale */
   .user-menu-categories-wrapper .user-menu-container {
     width: auto !important;
@@ -438,7 +437,7 @@
     padding: 0 !important;
     overflow: visible !important;
   }
-  
+
   .user-menu-categories-icons {
     padding: 0 1rem !important;
     gap: 1rem !important;
@@ -446,206 +445,299 @@
     display: flex !important;
     flex-wrap: nowrap !important;
   }
-  
+
   .user-menu-category-box {
     flex: 0 0 80px !important;
     width: 80px !important;
     height: 80px !important;
     padding: 12px 8px !important;
   }
-  
+
   .category-icon {
     font-size: 24px !important;
   }
-  
+
   .category-name {
     font-size: 12px !important;
   }
-  
+
   /* Grid 2 colonne su mobile con card più grandi */
   .user-menu-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 0.75rem !important; /* Ridotto gap per più spazio */
     padding: 1.5rem 0.75rem !important; /* Ridotto padding laterale */
   }
-  
+
   /* Card più grandi e leggibili */
   .user-menu-card {
     height: 420px !important; /* Aumentato da 350px */
   }
-  
+
   .user-menu-image-wrapper {
     height: 160px !important; /* Aumentato da 140px */
   }
-  
+
   .user-menu-card-image {
     height: 160px !important; /* Aumentato da 140px */
   }
-  
+
   .user-menu-card-content {
     padding: 1rem 0.75rem !important; /* Padding orizzontale ridotto */
   }
-  
+
   .user-menu-card-title {
     font-size: 1.05rem !important; /* Leggermente aumentato */
     line-height: 1.2 !important;
   }
-  
+
   .user-menu-card-price {
     font-size: 1.2rem !important; /* Aumentato */
   }
-  
+
   /* Ottimizza spazio per stelle */
   .user-menu-title-stars-row {
     flex-wrap: wrap !important;
     gap: 0.25rem !important;
   }
-  
+
   .user-menu-stars {
     font-size: 1rem !important; /* Ridotto leggermente */
     margin-left: 0.5rem !important;
   }
-  
+
   /* Metriche eco ottimizzate */
   .user-menu-eco-metrics {
     margin-top: 0.75rem !important; /* Ridotto spazio */
   }
-  
+
   .user-menu-eco-metric {
     margin-bottom: 0.4rem !important; /* Ridotto */
     gap: 0.3rem !important; /* Ridotto gap */
   }
-  
+
   .user-menu-eco-icon {
     font-size: 1rem !important; /* Ridotto */
   }
-  
+
   .user-menu-eco-bar {
     height: 6px !important; /* Ridotto da 8px */
   }
-  
+
   .user-menu-eco-value {
     font-size: 0.75rem !important; /* Ridotto */
     min-width: 35px !important;
   }
-  
-  /* Back card responsive */
+
+  /* Back card responsive - SENZA TRONCAMENTO */
   .user-menu-card-back {
-    padding: 1.5rem !important;
+    padding: 1.25rem !important;
+    overflow-y: auto !important; /* Scroll se necessario */
+    overflow-x: hidden !important;
   }
-  
+
+  /* Titolo back card */
+  .user-menu-card-back .user-menu-card-title {
+    font-size: 1.1rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  /* Sezione ingredienti ottimizzata */
+  .user-menu-ingredients-section {
+    margin: 0.75rem 0 !important;
+  }
+
+  .user-menu-ingredients-title {
+    font-size: 0.9rem !important;
+    margin-bottom: 0.4rem !important;
+  }
+
+  .user-menu-ingredients-list {
+    gap: 0.3rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
   .user-menu-ingredient-tag {
+    font-size: 0.75rem !important;
+    padding: 0.15rem 0.5rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Descrizione SENZA LIMITI */
+  .user-menu-description {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+    margin: 0.5rem 0 !important;
+    /* RIMOSSO il troncamento */
+    flex-grow: 1 !important;
+    overflow-y: auto !important;
+  }
+
+  /* Footer back card */
+  .user-menu-back-footer {
+    padding-top: 0.75rem !important;
+    margin-top: auto !important;
+    font-size: 0.85rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  .user-menu-back-footer span {
     font-size: 0.8rem !important;
-    padding: 0.2rem 0.6rem !important;
   }
 }
 
 /* ========== EXTRA SMALL MOBILE (sotto 480px) ========== */
 @media (max-width: 480px) {
-  
   .user-menu-header-title {
     font-size: 1.3rem !important;
   }
-  
+
   .user-menu-header-subtitle {
     font-size: 0.9rem !important;
   }
-  
+
   .user-menu-header-explore {
     font-size: 1.1rem !important;
   }
-  
+
   .user-menu-category-box {
     flex: 0 0 70px !important;
     width: 70px !important;
     height: 70px !important;
   }
-  
+
   .category-icon {
     font-size: 20px !important;
   }
-  
+
   .category-name {
     font-size: 11px !important;
   }
-  
+
   /* Card ancora più ottimizzate per schermi molto piccoli */
   .user-menu-grid {
     gap: 0.5rem !important;
     padding: 1rem 0.5rem !important;
   }
-  
+
   .user-menu-card {
     height: 380px !important; /* Ridotto per schermi piccoli */
   }
-  
+
   .user-menu-image-wrapper,
   .user-menu-card-image {
     height: 140px !important;
   }
-  
+
   .user-menu-card-content {
     padding: 0.75rem 0.6rem !important;
   }
-  
+
   .user-menu-card-title {
     font-size: 0.95rem !important;
   }
-  
+
   .user-menu-card-price {
     font-size: 1.05rem !important;
   }
-  
+
   /* Stelle su nuova riga se necessario */
   .user-menu-title-stars-row {
     flex-direction: column !important;
     align-items: flex-start !important;
   }
-  
+
   .user-menu-stars {
     margin-left: 0 !important;
     font-size: 0.9rem !important;
   }
-  
+
   /* Metriche ancora più compatte */
   .user-menu-eco-metrics {
     margin-top: 0.5rem !important;
   }
-  
+
   .user-menu-eco-metric {
     margin-bottom: 0.3rem !important;
   }
-  
+
   .user-menu-eco-icon {
     font-size: 0.9rem !important;
   }
-  
+
   .user-menu-eco-value {
     font-size: 0.7rem !important;
     min-width: 30px !important;
   }
-  
-  /* Back card */
+
+  /* Back card ancora più compatta per schermi piccoli */
   .user-menu-card-back {
-    padding: 1rem !important;
+    padding: 0.9rem !important;
   }
-  
+
+  .user-menu-card-back .user-menu-card-title {
+    font-size: 0.95rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .user-menu-ingredients-section {
+    margin: 0.5rem 0 !important;
+  }
+
   .user-menu-ingredients-title {
-    font-size: 0.9rem !important;
-  }
-  
-  .user-menu-ingredient-tag {
-    font-size: 0.75rem !important;
-    padding: 0.15rem 0.5rem !important;
-  }
-  
-  .user-menu-description {
     font-size: 0.85rem !important;
+    margin-bottom: 0.3rem !important;
+  }
+
+  .user-menu-ingredient-tag {
+    font-size: 0.7rem !important;
+    padding: 0.1rem 0.4rem !important;
+  }
+
+  .user-menu-description {
+    font-size: 0.8rem !important;
+    line-height: 1.3 !important;
+    /* NESSUN TRONCAMENTO - mostra tutto */
+  }
+
+  .user-menu-back-footer {
+    padding-top: 0.5rem !important;
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+  }
+
+  .user-menu-back-footer span {
+    font-size: 0.75rem !important;
   }
 }
 
+/* ========== STILI AGGIUNTIVI PER BACK CARD ========== */
+/* Layout flessibile per gestire contenuti di diverse lunghezze */
+.user-menu-card-back {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
 
-/* ========== ALTERNATIVA: LAYOUT A 1 COLONNA SU MOBILE ========== */
+/* Scrollbar personalizzata per il retro delle card */
+.user-menu-card-back::-webkit-scrollbar {
+  width: 4px !important;
+}
+
+.user-menu-card-back::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+.user-menu-card-back::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2) !important;
+  border-radius: 2px !important;
+}
+
+/* Assicura che il footer rimanga in basso */
+.user-menu-back-footer {
+  margin-top: auto !important;
+  flex-shrink: 0 !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
 /* Decommentare questa sezione se preferisci 1 colonna su mobile per migliore leggibilità */
 /*
 @media (max-width: 768px) {
@@ -684,18 +776,19 @@
 }
 */
 @media (max-width: 768px) {
-  html, body {
+  html,
+  body {
     overflow-x: hidden !important;
     width: 100% !important;
     position: relative !important;
   }
-  
+
   .user-menu-page {
     overflow-x: hidden !important;
     width: 100% !important;
     max-width: 100% !important;
   }
-  
+
   /* Fix per il container dentro categories-wrapper */
   .user-menu-categories-wrapper .user-menu-container {
     overflow: visible !important;
@@ -704,7 +797,7 @@
     margin: 0 !important;
     padding: 0 !important;
   }
-  
+
   /* Assicura che le icone si estendano oltre */
   .user-menu-categories-icons {
     width: fit-content !important;
