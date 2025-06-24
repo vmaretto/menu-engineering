@@ -70,15 +70,22 @@ function mapForUserMenu(item) {
   const name = item.Item || "-";
   const seed = stringToSeed(name);
   const [bgColor, accentColor] = colorsFromSeed(seed);
-  const imageFromCsv = item.Foto?.trim() ? item.Foto : null;
-  const image = imageFromCsv || generateDynamicSVG(name);
+  const rawUrl = item.Foto?.trim();
+  const isDrive = /drive\.google\.com/.test(rawUrl);
+  const imageUrl = rawUrl
+    ? isDrive
+      ? `https://troubled-neighborly-petalite.glitch.me/api/proxy-image?url=${encodeURIComponent(
+          rawUrl
+        )}`
+      : rawUrl
+    : generateDynamicSVG(name);
 
   return {
     id: item.id,
     name,
     subCategory: item["Sotto-categoria"] || "Altro",
     group: item["Categoria"] || "Generico",
-    image,
+    image: imageUrl, // 👈 QUI
     bgColor,
     accentColor,
     ingredients: item["Ingredienti principali"]
@@ -158,9 +165,9 @@ const UserMenu = () => {
   linear-gradient(rgba(255,255,255,0.55), rgba(255,255,255,0.55)),
   url(${process.env.PUBLIC_URL}/Pattern.jpg)
 `,
-        backgroundRepeat: "repeat",
-        backgroundSize: "300px",
-        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat", // ← niente mosaico
+        backgroundSize: "cover", // ← scala per coprire tutta l’area
+        backgroundPosition: "center", // ← centrato (opzionale)
         minHeight: "100vh",
       }}
     >
