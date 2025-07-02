@@ -294,11 +294,8 @@ const UserMenu = () => {
                             <span className="user-menu-eco-icon">💧</span>
                             <div className="user-menu-eco-bar">
                               <div
-                                className="user-menu-eco-fill"
-                                style={{
-                                  width: `${waterPercentage}%`,
-                                  backgroundColor: "#2ecc71", // verde forte per tutte le percentuali
-                                }}
+                                className="user-menu-eco-fill user-menu-fill-water"
+                                style={{ width: `${waterPercentage}%` }}
                               />
                             </div>
                             <span className="user-menu-eco-value">
@@ -311,11 +308,8 @@ const UserMenu = () => {
                             <span className="user-menu-eco-icon">🌱</span>
                             <div className="user-menu-eco-bar">
                               <div
-                                className="user-menu-eco-fill"
-                                style={{
-                                  width: `${carbonPercentage}%`,
-                                  backgroundColor: "#3498db", // azzurro acceso per tutte le percentuali
-                                }}
+                                className="user-menu-eco-fill user-menu-fill-carbon"
+                                style={{ width: `${carbonPercentage}%` }}
                               />
                             </div>
                             <span className="user-menu-eco-value">
