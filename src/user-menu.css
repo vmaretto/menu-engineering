@@ -308,6 +308,14 @@
   transition: width 0.3s ease !important;
 }
 
+.user-menu-fill-water {
+  background-color: #27ae60 !important; /* verde intenso 💧 */
+}
+
+.user-menu-fill-carbon {
+  background-color: #3498db !important; /* azzurro acceso 🌱 */
+}
+
 .user-menu-eco-value {
   font-size: 0.9rem !important;
   color: var(--text-soft) !important;
