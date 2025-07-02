@@ -99,10 +99,11 @@ function mapForUserMenu(item) {
         ? `€${parseFloat(item["Prezzo di vendita"]).toFixed(2)}`
         : "-",
     rating: parseFloat(item["Popolarità prevista"]) || 0,
-    waterFootprint: Number(item["Impronta idrica"]) || 0,
-    carbonFootprint: Number(item["Impronta carbonica"]) || 0,
-    maxWater: 500,
-    maxCarbon: 2,
+    waterFootprint: parseFloat((item["Impronta idrica"] || "0").trim()) || 0,
+    carbonFootprint:
+      parseFloat((item["Impronta carbonica"] || "0").trim()) || 0,
+    maxWater: 1000,
+    maxCarbon: 1,
   };
 }
 
@@ -251,9 +252,15 @@ const UserMenu = () => {
       <div className="user-menu-container">
         <div className="user-menu-grid">
           {filteredItems.map((item) => {
-            const waterPercentage = (item.waterFootprint / item.maxWater) * 100;
-            const carbonPercentage =
-              (item.carbonFootprint / item.maxCarbon) * 100;
+            const waterPercentage = Math.min(
+              (item.waterFootprint / 1000) * 100,
+              100
+            );
+            const carbonPercentage = Math.min(
+              (item.carbonFootprint / 1) * 100,
+              100
+            );
+
             return (
               <div
                 key={item.id}
@@ -282,33 +289,54 @@ const UserMenu = () => {
                         <p className="user-menu-card-price">{item.price}</p>
                       </div>
                       <div className="user-menu-eco-metrics">
-                        <div className="user-menu-eco-metric">
-                          <span className="user-menu-eco-icon">💧</span>
-                          <div className="user-menu-eco-bar">
-                            <div
-                              className="user-menu-eco-fill"
-                              style={{ width: `${waterPercentage}%` }}
-                            />
+                        {item.waterFootprint > 0 && (
+                          <div className="user-menu-eco-metric">
+                            <span className="user-menu-eco-icon">💧</span>
+                            <div className="user-menu-eco-bar">
+                              <div
+                                className="user-menu-eco-fill"
+                                style={{
+                                  width: `${waterPercentage}%`,
+                                  backgroundColor:
+                                    waterPercentage > 66
+                                      ? "#f66"
+                                      : waterPercentage > 33
+                                      ? "#fc3"
+                                      : "#6c6",
+                                }}
+                              />
+                            </div>
+                            <span className="user-menu-eco-value">
+                              {item.waterFootprint}L
+                            </span>
                           </div>
-                          <span className="user-menu-eco-value">
-                            {item.waterFootprint}L
-                          </span>
-                        </div>
-                        <div className="user-menu-eco-metric">
-                          <span className="user-menu-eco-icon">🌱</span>
-                          <div className="user-menu-eco-bar">
-                            <div
-                              className="user-menu-eco-fill"
-                              style={{ width: `${carbonPercentage}%` }}
-                            />
+                        )}
+                        {item.carbonFootprint > 0 && (
+                          <div className="user-menu-eco-metric">
+                            <span className="user-menu-eco-icon">🌱</span>
+                            <div className="user-menu-eco-bar">
+                              <div
+                                className="user-menu-eco-fill"
+                                style={{
+                                  width: `${carbonPercentage}%`,
+                                  backgroundColor:
+                                    carbonPercentage > 66
+                                      ? "#f66"
+                                      : carbonPercentage > 33
+                                      ? "#fc3"
+                                      : "#6c6",
+                                }}
+                              />
+                            </div>
+                            <span className="user-menu-eco-value">
+                              {item.carbonFootprint}kg
+                            </span>
                           </div>
-                          <span className="user-menu-eco-value">
-                            {item.carbonFootprint}kg
-                          </span>
-                        </div>
+                        )}
                       </div>
                     </div>
                   </div>
+
                   <div className="user-menu-card-back">
                     <h3 className="user-menu-card-title">{item.name}</h3>
                     <div className="user-menu-ingredients-section">
@@ -327,10 +355,14 @@ const UserMenu = () => {
                     <div className="user-menu-back-footer">
                       <span className="user-menu-card-price">{item.price}</span>
                       <div>
-                        <span>💧 {item.waterFootprint}L</span>
-                        <span style={{ marginLeft: "1rem" }}>
-                          🌱 {item.carbonFootprint}kg
-                        </span>
+                        {item.waterFootprint > 0 && (
+                          <span>💧 {item.waterFootprint}L</span>
+                        )}
+                        {item.carbonFootprint > 0 && (
+                          <span style={{ marginLeft: "1rem" }}>
+                            🌱 {item.carbonFootprint}kg
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
