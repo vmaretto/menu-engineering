@@ -297,12 +297,7 @@ const UserMenu = () => {
                                 className="user-menu-eco-fill"
                                 style={{
                                   width: `${waterPercentage}%`,
-                                  backgroundColor:
-                                    waterPercentage > 66
-                                      ? "#f66"
-                                      : waterPercentage > 33
-                                      ? "#fc3"
-                                      : "#6c6",
+                                  backgroundColor: "#2ecc71", // verde forte per tutte le percentuali
                                 }}
                               />
                             </div>
@@ -319,12 +314,7 @@ const UserMenu = () => {
                                 className="user-menu-eco-fill"
                                 style={{
                                   width: `${carbonPercentage}%`,
-                                  backgroundColor:
-                                    carbonPercentage > 66
-                                      ? "#f66"
-                                      : carbonPercentage > 33
-                                      ? "#fc3"
-                                      : "#6c6",
+                                  backgroundColor: "#3498db", // azzurro acceso per tutte le percentuali
                                 }}
                               />
                             </div>
